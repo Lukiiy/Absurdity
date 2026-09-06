@@ -6,7 +6,7 @@ using Zorro.Core;
 
 namespace Absurdity;
 
-internal static class HazardUtils
+internal static class Utils
 {
     internal static bool InRoomAndReady() => PhotonNetwork.InRoom && MapHandler.ExistsAndInitialized;
 
