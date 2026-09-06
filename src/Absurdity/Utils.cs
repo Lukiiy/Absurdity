@@ -98,4 +98,13 @@ internal static class Utils
         Plugin.Log.LogWarning($"Could not network-spawn '{prefabName}' at {position}: {lastException?.Message}");
         return null;
     }
+
+    internal static bool AllPlayersOnMountain()
+    {
+        List<Character> players = GetActivePlayers();
+        if (players.Count == 0) return false;
+
+        foreach (Character player in players) if (!IsOnMountain(player.Center)) return false;
+        return true;
+    }
 }
