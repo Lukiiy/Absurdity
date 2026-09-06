@@ -26,6 +26,19 @@ internal static class Utils
         return players;
     }
 
+    internal static bool IsOnMountain(Vector3 position)
+    {
+        MapHandler.MapSegment segment = MapHandler.CurrentMapSegment;
+        if (segment == null) return false;
+
+        Transform spawn = MapHandler.CurrentBaseCampSpawnPoint;
+        if (spawn == null) return false;
+
+        Vector3 start = spawn.transform.position;
+
+        return Vector2.Distance(new(position.x, position.z), new(start.x, start.z)) > 70f;
+    }
+
     internal static Vector3 GetPlayerCenter(List<Character> players)
     {
         if (players.Count == 0) return Character.localCharacter != null ? Character.localCharacter.Center : Vector3.zero;
