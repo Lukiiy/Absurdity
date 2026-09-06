@@ -36,7 +36,7 @@ internal static class Utils
 
         Vector3 start = spawn.transform.position;
 
-        return Vector2.Distance(new(position.x, position.z), new(start.x, start.z)) > 70f;
+        return Vector2.Distance(new(position.x, position.z), new(start.x, start.z)) > 210f;
     }
 
     internal static Vector3 GetPlayerCenter(List<Character> players)
