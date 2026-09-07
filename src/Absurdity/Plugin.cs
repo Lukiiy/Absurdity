@@ -12,7 +12,7 @@ public partial class Plugin : BaseUnityPlugin
     internal static ManualLogSource Log { get; private set; } = null!;
 
     internal static ConfigEntry<bool> ShoreTornadoes = null!;
-    internal static ConfigEntry<bool> TropiStalkers = null!;
+    internal static ConfigEntry<bool> EveryLooker = null!;
     internal static ConfigEntry<bool> TropiCrawlers = null!;
     internal static ConfigEntry<bool> BeetledRoots = null!;
     internal static ConfigEntry<bool> HelpfulBounces = null!;
@@ -26,7 +26,7 @@ public partial class Plugin : BaseUnityPlugin
         Log = Logger;
 
         ShoreTornadoes = Config.Bind("Hazards", "ShoreTornadoes", true, "Randomly spawn tornadoes in Shore.");
-        TropiStalkers = Config.Bind("Hazards", "TropicalStalkers", true, "Spawn lookers on Tropics.");
+        EveryLooker = Config.Bind("Hazards", "TropicalStalkers", true, "Spawn lookers on Tropics.");
         TropiCrawlers = Config.Bind("Hazards", "TropiCrawlers", true, "Spawns some crawlers on Tropics.");
         BeetledRoots = Config.Bind("Hazard", "BeetledRoots", true, "Spawns extra beetles in the roots");
         HelpfulBounces = Config.Bind("Tweak", "Helpful Bounces", true, "Increases the player boosting momentum");
