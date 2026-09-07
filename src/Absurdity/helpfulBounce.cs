@@ -9,7 +9,7 @@ internal static class HelpfulBounces
  
     private static void Postfix(CollisionModifier __instance)
     {
-        if (!Plugin.helpfulBounces.Value) return;
+        if (!Plugin.HelpfulBounces.Value) return;
         if (__instance.GetComponentInParent<Character>() == null) return;
  
         __instance.knockback *= Multi;
