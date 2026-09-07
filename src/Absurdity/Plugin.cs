@@ -13,7 +13,7 @@ public partial class Plugin : BaseUnityPlugin
 
     internal static ConfigEntry<bool> ShoreTornadoes = null!;
     internal static ConfigEntry<bool> TropiStalkers = null!;
-    internal static ConfigEntry<bool> TropicsExtraBooms = null!;
+    internal static ConfigEntry<bool> TropiCrawlers = null!;
     internal static ConfigEntry<bool> BeetledRoots = null!;
     internal static ConfigEntry<bool> HelpfulBounces = null!;
     internal static ConfigEntry<bool> AlpineScoutnighter = null!;
@@ -27,7 +27,7 @@ public partial class Plugin : BaseUnityPlugin
 
         ShoreTornadoes = Config.Bind("Hazards", "ShoreTornadoes", true, "Randomly spawn tornadoes in Shore.");
         TropiStalkers = Config.Bind("Hazards", "TropicalStalkers", true, "Spawn lookers on Tropics.");
-        TropicsExtraBooms = Config.Bind("Hazards", "TropicsBoomTouchies", true, "Spawns extra explosive shrooms in the Tropics.");
+        TropiCrawlers = Config.Bind("Hazards", "TropiCrawlers", true, "Spawns some crawlers on Tropics.");
         BeetledRoots = Config.Bind("Hazard", "BeetledRoots", true, "Spawns extra beetles in the roots");
         HelpfulBounces = Config.Bind("Tweak", "Helpful Bounces", true, "Increases the player boosting momentum");
         AlpineScoutnighter = Config.Bind("Hazard", "Alpine Scoutnighter", true, "Scoutmaster may appear at night in the Alpine, very bonkable. Requires at least 2 players.");
