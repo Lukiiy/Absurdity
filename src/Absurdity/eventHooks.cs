@@ -8,6 +8,7 @@ public class EventHooks
     {
         GlobalEvents.OnCharacterDied += OnPlayerDied;
         GlobalEvents.OnItemThrown += OnItemThrown;
+        GlobalEvents.OnBugleTooted += OnBugleTooted;
     }
 
     public static void OnPlayerDied(Character character)
@@ -30,4 +31,10 @@ public class EventHooks
         bonkable.bonkRange = 1f;
     }
 
+    private static void OnBugleTooted(Item bugle)
+    {
+        if (!PhotonNetwork.IsMasterClient || bugle == null || bugle.GetComponent<MagicBugle>() != null) return;
+
+        bugle.holderCharacter?.Fall(2f);
+    }
 }
