@@ -19,7 +19,7 @@ internal sealed class TropiCrawlers : MonoBehaviour
         private static void Postfix(RunManager __instance)
         {
             if (__instance == null || !Plugin.TropiCrawlers.Value) return;
-            if (__instance.GetComponent<TropiCrawlers>() == null) __instance.gameObject.AddComponent<TropiCrawlers>();
+            if (!__instance.TryGetComponent<TropiCrawlers>(out _)) __instance.gameObject.AddComponent<TropiCrawlers>();
 
             Handled.Clear();
         }
