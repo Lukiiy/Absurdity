@@ -30,19 +30,29 @@ internal sealed class TropiCrawlers : MonoBehaviour
     {
         private static void Postfix(MountainProgressHandler.ProgressPoint progressPoint)
         {
-            if (!Plugin.TropiCrawlers.Value || !PhotonNetwork.IsMasterClient || progressPoint == null || progressPoint.biome != Biome.BiomeType.Tropics || !Handled.Add(progressPoint)) return;
+            if (!Plugin.TropiCrawlers.Value || !PhotonNetwork.IsMasterClient || progressPoint == null) return;
+
+            (string? prefab, int spawnCount) = progressPoint.biome switch
+            {
+                Biome.BiomeType.Tropics => ("Scorpion", Count),
+                Biome.BiomeType.Roots => ("Beetle", Mathf.RoundToInt(Count * .25f)),
+                _ => (null, 0)
+            };
+
+            if (prefab == null || !Handled.Add(progressPoint)) return;
 
             Transform barrier = progressPoint.transform;
             if (barrier == null) return;
 
             Vector3 center = barrier.position + barrier.forward * ForwardOffset;
+            float baseY = center.y + 30f;
 
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < spawnCount; i++)
             {
                 Vector2 offset = UnityEngine.Random.insideUnitCircle * HorizontalSpread;
-                Vector3 spawn = center + new Vector3(offset.x, 30f + UnityEngine.Random.Range(-5f, 10f), offset.y);
+                Vector3 spawn = new(center.x + offset.x, baseY + UnityEngine.Random.Range(-5f, 10f), center.z + offset.y);
 
-                Utils.TrySpawnObject("Scorpion", spawn, Quaternion.Euler(0, UnityEngine.Random.Range(0, 360f), 0));
+                Utils.TrySpawnObject(prefab, spawn, Quaternion.Euler(0f, UnityEngine.Random.Range(0f, 360f), 0f));
             }
         }
     }
