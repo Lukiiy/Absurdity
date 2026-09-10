@@ -4,16 +4,25 @@ using UnityEngine;
 
 namespace Absurdity;
 
-[HarmonyPatch(typeof(MushroomZombieSpawner), "Spawn")]
+[HarmonyPatch]
 public static class Zombeee
 {
+    [HarmonyPatch(typeof(MushroomZombieSpawner), "Spawn")]
     [HarmonyPostfix]
-    private static void Postfix(MushroomZombieSpawner __instance)
+    private static void SpawnPostfix(MushroomZombieSpawner __instance)
     {
-        if (!PhotonNetwork.IsMasterClient || UnityEngine.Random.value >= .5f || __instance.mushroomZombiePrefab == null) return;
+        if (!PhotonNetwork.IsMasterClient) return;
 
-        Vector3 offset = UnityEngine.Random.insideUnitCircle.normalized;
+        MushroomZombie zombie = __instance.spawnedZombie;
+        if (zombie == null) return;
 
-        PhotonNetwork.Instantiate(__instance.mushroomZombiePrefab.gameObject.name, __instance.transform.position + new Vector3(offset.x, 0f, offset.y) * 1.5f, __instance.transform.rotation,0);
+        if (Random.value < .5f) zombie.currentState = MushroomZombie.State.Chasing;
+    }
+
+    [HarmonyPatch(typeof(MushroomZombie), "WakeUpFromSleep")]
+    [HarmonyPostfix]
+    private static void SleepPost(MushroomZombie __instance)
+    {
+        if (Random.value < .5f) __instance.currentState = MushroomZombie.State.Chasing;
     }
 }
