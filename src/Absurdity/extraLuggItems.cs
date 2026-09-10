@@ -19,7 +19,7 @@ public static class ExtraLuggageItems
     [HarmonyPostfix]
     private static void Postfix(Spawner __instance, List<PhotonView> __result)
     {
-        if (__instance is not Luggage || __result == null || __result.Count != 1 || !PhotonNetwork.IsMasterClient || Random.NextDouble() >= .35) return; // only 1 item luggages + 35% chance
+        if (__instance is not Luggage || __result == null || __result.Count != 1 || !PhotonNetwork.IsMasterClient || Random.NextDouble() >= .4) return; // only 1 item luggages + 40% chance
 
         Transform spawn = __result[0].transform;
         string[] pool = BonusItems;
