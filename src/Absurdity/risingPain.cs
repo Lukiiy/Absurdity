@@ -11,7 +11,7 @@ public static class FastRise
     [HarmonyPrefix]
     private static void Prefix(LavaRising __instance)
     {
-        if (!PhotonNetwork.IsMasterClient || __instance.ended || Singleton<MapHandler>.Instance == null || Singleton<MapHandler>.Instance.GetCurrentSegment() != __instance.requiredSegment) return;
+        if (!PhotonNetwork.IsMasterClient || __instance.ended || Singleton<MapHandler>.Instance == null || Singleton<MapHandler>.Instance.GetCurrentSegment() != __instance.requiredSegment || __instance.risingFieldType == LavaRising.RisingFieldType.VoidGhosts) return;
 
         float highestPlayerY = float.MinValue;
 
