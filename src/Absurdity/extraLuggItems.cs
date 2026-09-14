@@ -19,12 +19,12 @@ public static class ExtraLuggageItems
     [HarmonyPostfix]
     private static void Postfix(Spawner __instance, List<PhotonView> __result)
     {
-        if (__instance is not Luggage || __result == null || __result.Count != 1 || !PhotonNetwork.IsMasterClient || Random.NextDouble() >= .4) return; // only 1 item luggages + 40% chance
+        if (__instance is not Luggage || __result == null || __result.Count != 1 || !PhotonNetwork.IsMasterClient) return; // only 1 item luggages
 
         string[] pool = BonusItems;
         Biome.BiomeType biome = Singleton<MapHandler>.Instance.GetCurrentBiome();
 
-        if (biome == Biome.BiomeType.Alpine) pool = BonusItems.Concat(AlpineBonus).ToArray(); else if (biome == Biome.BiomeType.Mesa) pool = BonusItems.Concat(MesaBonus).ToArray();
+        if (biome == Biome.BiomeType.Alpine) pool = [.. BonusItems, .. AlpineBonus]; else if (biome == Biome.BiomeType.Mesa) pool = [.. BonusItems, .. MesaBonus];
 
         for (int i = 0; i < 2; i++)
         {
