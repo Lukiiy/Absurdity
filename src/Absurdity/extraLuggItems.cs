@@ -21,7 +21,6 @@ public static class ExtraLuggageItems
     {
         if (__instance is not Luggage || __result == null || __result.Count != 1 || !PhotonNetwork.IsMasterClient || Random.NextDouble() >= .4) return; // only 1 item luggages + 40% chance
 
-        Transform spawn = __result[0].transform;
         string[] pool = BonusItems;
         Biome.BiomeType biome = Singleton<MapHandler>.Instance.GetCurrentBiome();
 
@@ -29,7 +28,7 @@ public static class ExtraLuggageItems
 
         for (int i = 0; i < 2; i++)
         {
-            Vector3 position = spawn.position + Vector3.up * (.25f + i * .15f);
+            Vector3 position = __result[0].transform.position + Vector3.up * (.25f + i * 1.15f);
 
             GameObject? item = Utils.TrySpawnObject(pool[Random.Next(pool.Length)], position, UnityEngine.Random.rotation);
             if (item == null) continue;
