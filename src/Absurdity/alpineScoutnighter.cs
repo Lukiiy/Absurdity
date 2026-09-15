@@ -23,8 +23,7 @@ internal sealed class AlpineScoutnighter : MonoBehaviour
 
     private void Update()
     {
-        if (!PhotonNetwork.InRoom || !PhotonNetwork.IsMasterClient) return; // This is intended, as I don't want to handle this in solo runs.
-        if (MapHandler.Instance == null || DayNightManager.instance == null) return;
+        if (!PhotonNetwork.InRoom || !PhotonNetwork.IsMasterClient || MapHandler.Instance == null || DayNightManager.instance == null) return; // inRoom is intended, as I don't want to handle this in solo runs.
 
         if (MapHandler.Instance.GetCurrentBiome() != Biome.BiomeType.Alpine)
         {
