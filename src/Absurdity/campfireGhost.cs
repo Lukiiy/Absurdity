@@ -15,7 +15,7 @@ internal sealed class CampfireGhost
     {
         private static void Postfix(MountainProgressHandler.ProgressPoint progressPoint)
         {
-            if (!Plugin.CampGhost.Value || !PhotonNetwork.IsMasterClient || progressPoint == null || progressPoint.biome == Biome.BiomeType.Shore) return;
+            if (!Plugin.CampGhost.Value || !PhotonNetwork.IsMasterClient || progressPoint == null || progressPoint.biome == Biome.BiomeType.Shore || progressPoint.biome == Biome.BiomeType.Peak) return;
 
             Plugin.Instance.StartCoroutine(SpawnGhostWhenVulnerable());
         }
