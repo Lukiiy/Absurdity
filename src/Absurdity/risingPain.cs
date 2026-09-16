@@ -8,17 +8,5 @@ namespace Absurdity;
 [HarmonyPatch(typeof(LavaRising), "Update")]
 public static class FastRise
 {
-    [HarmonyPrefix]
-    private static void Prefix(LavaRising __instance)
-    {
-        if (!PhotonNetwork.IsMasterClient || __instance.ended || Singleton<MapHandler>.Instance == null || Singleton<MapHandler>.Instance.GetCurrentSegment() != __instance.requiredSegment || __instance.risingFieldType == LavaRising.RisingFieldType.VoidGhosts) return;
-
-        float highestPlayerY = float.MinValue;
-
-        foreach (Character character in Utils.GetActivePlayers()) if (!character.data.dead && character.data.fullyConscious) highestPlayerY = Mathf.Max(highestPlayerY, character.Center.y);
-
-        if (highestPlayerY == float.MinValue) return;
-
-        if (!__instance.started && highestPlayerY - __instance.lava.transform.position.y > 25f) __instance.secondsWaitedToStart = __instance.initialWaitTime + 1f;
-    }
+    private static void Postfix(LavaRising __instance) => __instance.initialWaitTime *= .4f;
 }
