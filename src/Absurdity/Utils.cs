@@ -107,4 +107,16 @@ internal static class Utils
         foreach (Character player in players) if (!IsOnMountain(player.Center)) return false;
         return true;
     }
+
+    internal static GameObject? SpawnPetrified(Character player, bool withDagger = false) => SpawnPetrified(player, player.refs.ragdoll.bodySpawnPoint.transform.position, player.refs.ragdoll.bodySpawnPoint.transform.rotation, withDagger);
+
+    internal static GameObject? SpawnPetrified(Character player, Vector3 position, Quaternion rotation, bool dagger = false)
+    {
+        if (player == null || player.photonView == null) return null;
+
+        GameObject statue = PhotonNetwork.Instantiate("PetrifiedScout", position, rotation, 0);
+
+        statue.GetComponent<PhotonView>().RPC("RPC_SpawnPetrifiedScout", RpcTarget.All, player.photonView.ViewID, dagger);
+        return statue;
+    }
 }
