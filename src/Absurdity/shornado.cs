@@ -76,11 +76,7 @@ internal sealed class Shornado : MonoBehaviour
     {
         while (PhotonNetwork.InRoom)
         {
-            if (!Utils.IsBiome(Biome.BiomeType.Shore))
-            {
-                yield return new WaitForSeconds(1f);
-                continue;
-            }
+            SpawnTornado();
 
             yield return new WaitForSeconds(UnityEngine.Random.Range(0f, 35f));
 
