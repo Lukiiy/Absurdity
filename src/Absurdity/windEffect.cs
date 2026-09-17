@@ -7,7 +7,7 @@ internal static class WindEffect
 {
     private static void Postfix(bool windActive, ref float __result)
     {
-        if (windActive) __result *= 1.75f;
+        if (windActive) __result *= 1.25f;
 
         if (!Utils.IsBiome(Biome.BiomeType.Alpine)) return; // leave alpine alone
 
