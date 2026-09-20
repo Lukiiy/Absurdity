@@ -13,6 +13,7 @@ public static class ExtraLuggageItems
     private static readonly string[] BonusItems = ["Antidote", "Balloon", "Dynamite", "Basketball", "WarpFungus", "Parachute", "Rocketpack", "RopeShooter"]; // dis: "Clusterberry Black"
     private static readonly string[] AlpineBonus = ["MagicBean", "Flag_Plantable_Checkpoint", "PortableStovetopItem", "BounceShroom"];
     private static readonly string[] MesaBonus = ["Glider", "BounceShroom", "RopeSpool", "Pirate Compass"];
+    private static readonly string[] NadirBonus = ["Skull", "RitualDagger", "Stone", "Megaphone", "Lollipop_Prop", "Warpsketball", "ScoutCookies_Vanilla"];
 
     private static readonly System.Random Random = new();
 
