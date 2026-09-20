@@ -13,6 +13,6 @@ internal static class JetpackBoost
         Character character = __instance.GetComponent<Character>();
         if (character == null) return;
 
-        character.AddForceAtPosition(Vector3.up * 2f, character.Center, 2f);
+        character.AddForceAtPosition(Vector3.up * 2f + character.data.lookDirection * 3f, character.Center, 2f);
     }
 }
