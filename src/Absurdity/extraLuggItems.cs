@@ -10,8 +10,8 @@ namespace Absurdity;
 [HarmonyPatch(typeof(Spawner), nameof(Spawner.SpawnItems))]
 public static class ExtraLuggageItems
 {
-    private static readonly string[] BonusItems = ["Antidote", "Balloon", "Dynamite", "CloudFungus", "WarpFungus", "Parachute", "Rocketpack", "RopeShooter"]; // dis: "Clusterberry Black"
-    private static readonly string[] AlpineBonus = ["MagicBean", "Flag_Plantable_Checkpoint", "PortableStovetopItem"];
+    private static readonly string[] BonusItems = ["Antidote", "Balloon", "Dynamite", "Basketball", "WarpFungus", "Parachute", "Rocketpack", "RopeShooter"]; // dis: "Clusterberry Black"
+    private static readonly string[] AlpineBonus = ["MagicBean", "Flag_Plantable_Checkpoint", "PortableStovetopItem", "BounceShroom"];
     private static readonly string[] MesaBonus = ["Glider", "BounceShroom", "RopeSpool", "Pirate Compass"];
 
     private static readonly System.Random Random = new();
