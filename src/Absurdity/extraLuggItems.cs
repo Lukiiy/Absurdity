@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using HarmonyLib;
 using Photon.Pun;
 using UnityEngine;
@@ -25,7 +24,19 @@ public static class ExtraLuggageItems
         string[] pool = BonusItems;
         Biome.BiomeType biome = Singleton<MapHandler>.Instance.GetCurrentBiome();
 
-        if (biome == Biome.BiomeType.Alpine) pool = [.. BonusItems, .. AlpineBonus]; else if (biome == Biome.BiomeType.Mesa) pool = [.. BonusItems, .. MesaBonus];
+        switch (biome) {
+            case Biome.BiomeType.Alpine:
+                pool = [.. BonusItems, .. AlpineBonus];
+                break;
+            case Biome.BiomeType.Mesa:
+                pool = [.. BonusItems, .. MesaBonus];
+                break;
+            case Biome.BiomeType.Void:
+                pool = [.. BonusItems, .. NadirBonus];
+                break;
+            default:
+                break;
+        }
 
         for (int i = 0; i < 2; i++)
         {
