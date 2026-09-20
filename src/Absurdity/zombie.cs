@@ -17,12 +17,6 @@ public static class Zombeee
         if (zombie == null) return;
 
         if (Random.value < .5f) zombie.currentState = MushroomZombie.State.Chasing;
-    }
-
-    [HarmonyPatch(typeof(MushroomZombie), "WakeUpFromSleep")]
-    [HarmonyPostfix]
-    private static void SleepPost(MushroomZombie __instance)
-    {
-        if (Random.value < .5f) __instance.currentState = MushroomZombie.State.Chasing;
+        if (Random.value < .5) PhotonNetwork.Instantiate("MushroomZombie", zombie.character.refs.ragdoll.bodySpawnPoint.position, zombie.character.refs.ragdoll.bodySpawnPoint.rotation, 0);
     }
 }
